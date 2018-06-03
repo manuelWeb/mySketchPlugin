@@ -1,26 +1,14 @@
 
 var onRun = function(context) {
-  // //reference the Sketch Document
-  // var doc = context.document;
-  // //reference all the pages in the document in an array
-  // var pages = [doc pages];
-  // //loop through the pages of the document
-  // for (var i = 0; i < pages.count(); i++){
-    //   //reference each page
-    //   var page = pages[i];
-    //   //get the name of the page
-    //   var pageName = [page name];
-    //   //show the page name in the console
-    //   log(pageName);
-    // }
-    var doc = context.document;
-    var pages = [doc pages];
+  var doc = context.document;
+  var pages = [doc pages];
 
   for (var i = 0; i < pages.count(); i++){
     var page = pages[i];
     // log([page name])
     var artboards = [page artboards];
     // log(artboards)
+
     for (var z = 0; z < artboards.count(); z++){
       var artboard = artboards[z];
       var layers = [artboard layers];
@@ -55,13 +43,3 @@ var onRun = function(context) {
   }
 
 }
-
-// // log all layers & filtre MSShape
-    // log(layers.length)
-    // for (var l = 0; l < layers.count(); l++) {
-    //   var layer = layers[l];
-    //   if(layer.class() == "MSShapeGroup"){
-    //     // log(`MSShapeGroup: ${layers[l]}`)
-    //     log(layers[l])
-    //   }
-    // }
