@@ -25,7 +25,7 @@ var onRun = function(context) {
       var artboard = artboards[z];
       var layers = [artboard layers];
     }
-    
+
     // log slices :
     for(var k = 0; k < layers.count(); k++){
       var layer = layers[k];
@@ -52,9 +52,9 @@ var onRun = function(context) {
         }
       }
       log(addLyW)
-    }
-
   }
+
+}
 
 // // log all layers & filtre MSShape
     // log(layers.length)
