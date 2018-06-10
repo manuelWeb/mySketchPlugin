@@ -11,7 +11,7 @@
       "script" : "MyScript.js",
       "handler" : "onRun",
       "shortcut" : "command shift y",
-      "name" : "Get Page Names",
+      "name" : "Nested table by slices like fireworks",
       "identifier" : "my.plugin.pagenames"
     }
   ],
