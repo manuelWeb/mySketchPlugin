@@ -1,12 +1,12 @@
 {
-    "name" : "My Plugin",
-    "identifier" : "my.plugin",
-    "version" : "1.0",
-    "description" : "My First Sketch Plugin",
-    "authorEmail" : "your@email.com",
-    "author" : "Your Name",
+  "name" : "My Plugin",
+  "identifier" : "my.plugin",
+  "version" : "1.0",
+  "description" : "My First Sketch Plugin",
+  "authorEmail" : "your@email.com",
+  "author" : "Your Name",
 
-    "commands" : [
+  "commands" : [
     {
       "script" : "MyScript.js",
       "handler" : "onRun",
@@ -14,5 +14,5 @@
       "name" : "Nested table by slices like fireworks",
       "identifier" : "my.plugin.pagenames"
     }
-  ],
+  ]
 }
