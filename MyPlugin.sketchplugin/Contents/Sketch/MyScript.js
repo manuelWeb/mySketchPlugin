@@ -24,25 +24,29 @@ var onRun = function(context) {
   // for (var prop in obj) {
     //   log(`obj.${prop} = ${obj[prop]}`);
     // }
-  var createObj = function (a,b,c,d,e) {
-    return {
-      'name': a,
-      'width': b
+  var sliceLayout = ["layer", "name", "width", "height", "x", "y"]
+  class Slice {
+
+    constructor(attribut, value) {
+      this.attribut = attribut;
+      this.value = value;
     }
+    present() {
+      // log(`attribut: ${this.attribut} value: ${this.value} `)
+      return {
+        "attribut": this.attribut,
+        "value": this.value
+      }
+    }
+
   }
-  var selection = context.selection
-  for (var i = 0; i < selection.count(); i++) {
-    const layer  = selection[i],
-          name   = layer.name,
-          width  = layer.frame().width(),
-          height = layer.frame().height(),
-          x      = layer.frame().x(),
-          y      = layer.frame().y();
-    // log('layer ' + layer.name + ' is selected.')
-    // log('layerWidth ' + layer.frame().width() + ' is selected.')
-    createObj(name,width,height,x,y)
-  }
-  log(createObj)
+  let width = new Slice("width", test.frame().width());
+  let height = new Slice("height", test.frame().height());
+  // john.present();  width.present(): ${width.present()}
+  log(width.present())
+  log(`width.attr: ${width.attribut}, width.value: ${height.value}, height.attr: ${height.attribut}, height.value: ${height.value} `)
+  log(`test.frame().x():${test.frame().x()},test.name():${test.name()},`)
+
   // for(var key in selection) {
   //   if(myObject.hasOwnProperty(key)) {
   //     log(myObject[key])
