@@ -32,22 +32,33 @@ var onRun = function(context) {
   // créer une fonction qui fabrique les objets slices :
   // function creatObjSlice(selections){
     var objS = {}
+    var aryS = []
     var cpt = 1;
     for(let i = 0; i < selections.count(); i++) {
       var selSlice = selections[i]
       // log(selections[i])
       // log(selSlice.frame().width())
-      if (selSlice.sketchObject.className() == "MSSliceInstance") {
-        var curName = selSlice.name()
-      }
-      // alert(curName)
-      objS["item_"+cpt] += curName
+      // (selection.class() != "")
+      // log(selSlice.class())
+      var curName = selSlice.name()
+      // var curName = [selSlice name]
+      function listerToutesLesPropriétés(o){
+        var objectToInspect;
+        var result = [];
+        for(objectToInspect = o; objectToInspect !== null; objectToInspect = Object.getPrototypeOf(objectToInspect)){
+          result = result.concat(Object.getOwnPropertyNames(objectToInspect));
+        }
+        log(`result: ${result} `);
+      }listerToutesLesPropriétés(curName)
+
+      objS["item_"+cpt] = curName;
+      aryS.push(curName)
       cpt++
       // objS["item"]["width"] += selSlice.frame().width()
       // let monObj = new Slice( selSlice.frame().height() );
     }
-    log(objS.item_1)
-    // log(objS.item_1)
+    log(objS.item_2)
+    log(aryS)
 
 
 }
