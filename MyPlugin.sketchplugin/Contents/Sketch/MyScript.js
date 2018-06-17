@@ -31,6 +31,7 @@ var onRun = function(context) {
       cpt++
     }
 
+    var acc = 0
     for (const prop in objCel) {
       // log(`objCel.${prop} = ${objCel[prop]}, y:${objCel[prop]["y"]} `)
       // obj td
@@ -39,6 +40,13 @@ var onRun = function(context) {
       if(objCelProp["width"] == 620){
         log(`objCel==620: ${objCel[prop]}`)
       }else{
+        if(acc < 620) {
+          acc += objCelProp["width"]
+          log(`si acc!=620->${objCel[prop]}, acc= ${acc} `)
+        }else{
+          log(`ok acc=620 alors on le remet a 0`)
+          acc = 0
+        }
         log(`objCel!=620: ${objCel[prop]}`)
       }
       // attributs td
