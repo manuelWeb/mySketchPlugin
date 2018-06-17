@@ -1,10 +1,10 @@
+// import {myLog} from "./module.js"
+// @see https://github.com/skpm/skpm
 var onRun = function(context) {
+
   const doc = context.document;
   const selections = context.selection;
-  function alert(title, message){
-    const app = [NSApplication sharedApplication];
-    [app displayDialog:message withTitle:title];
-  }
+
   !selections.count() ? doc.showMessage(`Please select slice`) : doc.showMessage(` your selections: ${selections}`)
   // !selections.count() ? alert(`Please select slice`) : alert(` your selections: ${selections}`)
 
@@ -30,5 +30,10 @@ var onRun = function(context) {
     log(objS.item_2)
     log(objS.item_2.width)
     log(objS.item_2.height)
+
+    for (const prop in objS) {
+      log(`obj.${prop} = ${objS[prop]},
+y:${objS[prop]["y"]} `)
+    }
 
 }
