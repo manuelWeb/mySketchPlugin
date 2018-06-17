@@ -30,23 +30,20 @@ var onRun = function(context) {
 
       cpt++
     }
-    // alert("objCel",Object.keys(objCel))
-    // alert("objCel",Object.keys(objCel.td_1))
-    log(Object.keys(objCel))
-    log(Object.keys(objCel.td_1))
-    log(objCel.td_2)
 
     for (const prop in objCel) {
       // log(`objCel.${prop} = ${objCel[prop]}, y:${objCel[prop]["y"]} `)
       // obj td
       const objCelProp = objCel[prop]
       log(`objCel.${prop} = ${objCel[prop]}`)
+      if(objCelProp["width"] == 620){
+        log(`objCel==620: ${objCel[prop]}`)
+      }else{
+        log(`objCel!=620: ${objCel[prop]}`)
+      }
       // attributs td
-      for(const prop in objCelProp){
-        if(objCelProp["width"] == 620){
-          log(`objCel==620: ${objCelProp}`)
-        }
-        log(`objCelProp.${prop}->${objCelProp[prop]} `)
+      for(const attr in objCelProp){
+        log(`objCelProp.${attr}->${objCelProp[attr]} `)
       }
     }
     // si la td != 620 et que la suivante à une val y != alors c'est une table imbriquée
