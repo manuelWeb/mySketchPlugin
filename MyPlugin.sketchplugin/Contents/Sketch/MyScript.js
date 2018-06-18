@@ -40,25 +40,22 @@ var onRun = function(context) {
       if(objCelProp["width"] == 620){
         log(`objCel==620: ${objCel[prop]}`)
         log(`une slice une…`)
-      }else{
-        if(acc < 620) {
+      }else if(acc < 620) {
           acc += objCelProp["width"]
           if(acc==620){
             log(`une slice une…`)
           }
           // log(`si acc!=620->${objCel[prop]}, acc= ${acc} `)
-        }else{
-          log(`ok acc=620 alors on le remet a 0`)
-          acc = 0
-        }
-        // log(`objCel!=620: ${objCel[prop]}`)
+      }else{
+        log(`ok acc=620 alors on le remet a 0`)
+        acc = 0
       }
-      // attributs td
-      // for(const attr in objCelProp){
-      //   log(`objCelProp.${attr}->${objCelProp[attr]} `)
-      // }
+        // log(`objCel!=620: ${objCel[prop]}`)
     }
+    // attributs td
+    // for(const attr in objCelProp){
+    //   log(`objCelProp.${attr}->${objCelProp[attr]} `)
+    // }
     // si la td != 620 et que la suivante à une val y != alors c'est une table imbriquée
   // log(listerToutesLesPropriétés(objCel.td_1))
-
 }
