@@ -64,7 +64,7 @@ var onRun = function(context) {
       const objCelProp = objCel[prop]
       log(`objCel.${prop} = ${objCel[prop]}`)
       if(objCelProp["width"] == width_prompt){
-        log(`objCel==620: ${objCel[prop]}`)
+        log(`objCelProp["width"]==${width_prompt}: ${objCel[prop]}`)
         // log(`une slice une…`)
       }else if(acc < width_prompt) {
           acc += objCelProp["width"]
