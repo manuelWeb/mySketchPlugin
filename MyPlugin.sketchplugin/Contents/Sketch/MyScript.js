@@ -8,8 +8,10 @@ function listerToutesLesPropriétés(o){
   }
   return result;
 }
-var onRun = function(context) {
+var UI = require('sketch/ui')
 
+var onRun = function(context) {
+  var width_prompt = UI.getStringFromUser("Width of your masterpiece", 620)
   const doc = context.document;
   const selections = context.selection;
 
@@ -39,13 +41,13 @@ var onRun = function(context) {
         selSlice.frame().x(),
         selSlice.frame().y()
       )
-      
+
       objCel["td_"+cpt]           = curName
       objCel["td_"+cpt]["width"]  = selSlice.frame().width()
       objCel["td_"+cpt]["height"] = selSlice.frame().height()
       objCel["td_"+cpt]["x"]      = selSlice.frame().x()
       objCel["td_"+cpt]["y"]      = selSlice.frame().y()
-      
+
       allTd["td_"+cpt] = objCel_;
       cpt++
     }
@@ -61,25 +63,25 @@ var onRun = function(context) {
       // obj td
       const objCelProp = objCel[prop]
       log(`objCel.${prop} = ${objCel[prop]}`)
-      if(objCelProp["width"] == 620){
+      if(objCelProp["width"] == width_prompt){
         log(`objCel==620: ${objCel[prop]}`)
-        log(`une slice une…`)
-      }else if(acc < 620) {
+        // log(`une slice une…`)
+      }else if(acc < width_prompt) {
           acc += objCelProp["width"]
-          if(acc==620){
+          if(acc==width_prompt){
             log(`une slice une…`)
+            log(`ok acc=${width_prompt} alors on le remet a 0`)
           }
-          // log(`si acc!=620->${objCel[prop]}, acc= ${acc} `)
-      }else{
-        log(`ok acc=620 alors on le remet a 0`)
-        acc = 0
-      }
-        // log(`objCel!=620: ${objCel[prop]}`)
+          // log(`si acc!=width_prompt->${objCel[prop]}, acc= ${acc} `)
+        }else{
+          acc = 0
+        }
+        // log(`objCel!=width_prompt: ${objCel[prop]}`)
     }
     // attributs td
     // for(const attr in objCelProp){
     //   log(`objCelProp.${attr}->${objCelProp[attr]} `)
     // }
-    // si la td != 620 et que la suivante à une val y != alors c'est une table imbriquée
+    // si la td != width_prompt et que la suivante à une val y != alors c'est une table imbriquée
   // log(listerToutesLesPropriétés(objCel.td_1))
 }
