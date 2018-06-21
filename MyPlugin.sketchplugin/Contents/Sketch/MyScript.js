@@ -35,13 +35,7 @@ var onRun = function(context) {
       selSlice.frame().x(),
       selSlice.frame().y()
     )
-
-    objCel["td_"+cpt]           = curName
-    objCel["td_"+cpt]["width"]  = selSlice.frame().width()
-    objCel["td_"+cpt]["height"] = selSlice.frame().height()
-    objCel["td_"+cpt]["x"]      = selSlice.frame().x()
-    objCel["td_"+cpt]["y"]      = selSlice.frame().y()
-
+    // cp sous objet td dans allTd
     allTd["td_"+cpt] = objCel_;
     cpt++
   }
@@ -49,16 +43,20 @@ var onRun = function(context) {
   var acc = 0
   for (const td in allTd) {
 
-    const allTdProp = allTd[td]
-    log(`${td}: ${allTd[td].name} `)
-    // log()
-    if(allTdProp["width"] == width_prompt){
-      log(`${allTd[td].name}.width==${allTd[td].width} Une slice une !`)
+    const currentTd = allTd[td]
+
+    log(`${td}: ${currentTd.name} `)
+
+    if(currentTd["width"] == width_prompt){
+      log(`${currentTd.name}.width==${currentTd.width} Une slice une !`)
     }else if(acc < width_prompt) {
-        acc += allTdProp.width
-        // log(`si acc!=width_prompt->${allTd[prop]}, acc= ${acc} `)
+      log(`acc:${acc} < w_prompt:${width_prompt}`)
+      log(`acc:${acc} += currentTd.width:${currentTd.width} => ${acc} + ${currentTd.width} = ${acc+currentTd.width} `)
+      acc += currentTd.width
+      if(acc == width_prompt) {
+        log(`une slice une…`)
+      }
     }else if(acc == width_prompt){
-      log(`une slice une…`)
       log(`ok acc====${width_prompt} alors on le remet a 0`)
     }else{
       acc = 0
