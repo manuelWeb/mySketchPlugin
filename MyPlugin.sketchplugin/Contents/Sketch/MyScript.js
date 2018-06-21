@@ -12,16 +12,17 @@ var onRun = function(context) {
   const width_prompt = UI.getStringFromUser("Width of your masterpiece", 620)
   const doc = context.document
   const selections = context.selection
-  
-  
+
+
   var pages = [doc pages];
   for (var i = 0; i < pages.count(); i++){
       var page = pages[i];
       // log([page name])
       var artboards = [page artboards];
       log(artboards[0])
+      log(artboards[0].frame().width())
     }
-    
+
 // also exposed on Document
 
   !selections.count() ? doc.showMessage(`Please select slice`) : doc.showMessage(` your selections: ${selections}`)
