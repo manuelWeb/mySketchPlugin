@@ -69,26 +69,24 @@ var onRun = function(context) {
         log(`une slice yeah, td.name: ${td.name} `)
         break;
       case (w < 620):
-        accTd += td.name
-        log(accWidth)
+        // accTd = {'name':td.name};
+        accTd[td.name] = {'width':td.width}
         log(`pas de slice accWidth:${accWidth} `)
         accWidth += w;
         if(accWidth === 620){
-          log(`une autre slice:${accTd}`)
+          log(`une autre slice:${accTd[td.name]}`)
         }
         break;
       // default:
       //   break;
     }
   }
-
   for (const td in allTd) {
-
     const currentTd = allTd[td]
     isSlice(currentTd)
     // log(`${td}: ${currentTd.name} `);
-
   }
+  log(accTd)
 
   // si la td != width_prompt et que la suivante à une val y != alors c'est une table imbriquée
   // log(listerToutesLesPropriétés(objCel.td_1))
