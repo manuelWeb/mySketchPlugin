@@ -9,12 +9,11 @@ var UI = require('sketch/ui')
 // selection.forEach(layer => log(layer.name))
 
 var onRun = function(context) {
-  const width_prompt = UI.getStringFromUser("Width of your masterpiece", 620)
+  // const width_prompt = UI.getStringFromUser("Width of your masterpiece", 620)
   const doc = context.document
   const selections = context.selection
-
-
   var pages = [doc pages];
+  var artwidth = 0;
   for (var i = 0; i < pages.count(); i++)
   {
       var page = pages[i];
@@ -22,6 +21,7 @@ var onRun = function(context) {
       var artboards = [page artboards];
       log(artboards[0])
       log(artboards[0].frame().width())
+      artwidth = artboards[0].frame().width()
   }
 
 // also exposed on Document
@@ -62,26 +62,27 @@ var onRun = function(context) {
   let accWidth = 0
   let accTd    = {}
   let cptS     = 1
+  let test = {}
+  let test2 = []
 
   function isSlice(td) {
     var w = td.width;
     var sliceNum = "slice_" + cptS
     switch (true) {
-      case (w === 620 || accWidth === 620):
+      case (w === artwidth || accWidth === artwidth):
         // accTd = { 'slice':sliceNum }
         accTd[sliceNum] = {'name':td.name}
         cptS ++
         accWidth = 0
         log(`une slice:${sliceNum} yeah, td.name: ${td.name} `)
         break;
-        case (w < 620):
+        case (w < artwidth):
         // accTd["slice___"+cptS] = {'name':td.name}
-        accTd["slice___"+cptS] = td.name
-        log(`slice___${cptS}::::${accTd["slice___"+cptS]} `)
-        // accTd[td.name] = { 'width':td.width }
-        // log(`pas de slice accWidth:${accWidth} `)
+        log(`slice___${cptS}->${td.name} `)
         accWidth += w;
-        if(accWidth === 620){
+        test2.push(td)
+        test[sliceNum] = td.name
+        if(accWidth === artwidth){
           log(`une autre slice:${td.name} slice_${cptS} `)
           cptS ++
         }
@@ -95,7 +96,10 @@ var onRun = function(context) {
     isSlice(currentTd)
     // log(`${td}: ${currentTd.name} `);
   }
-  log(accTd)
+  log(`obj accTd `);log(accTd);
+  log(test);log(test2)
+  // for (const key in test) {
+  // }
 
   // si la td != width_prompt et que la suivante à une val y != alors c'est une table imbriquée
   // log(listerToutesLesPropriétés(objCel.td_1))
