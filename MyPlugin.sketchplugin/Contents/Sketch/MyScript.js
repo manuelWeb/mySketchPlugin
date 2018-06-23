@@ -15,13 +15,14 @@ var onRun = function(context) {
 
 
   var pages = [doc pages];
-  for (var i = 0; i < pages.count(); i++){
+  for (var i = 0; i < pages.count(); i++)
+  {
       var page = pages[i];
       // log([page name])
       var artboards = [page artboards];
       log(artboards[0])
       log(artboards[0].frame().width())
-    }
+  }
 
 // also exposed on Document
 
@@ -57,25 +58,43 @@ var onRun = function(context) {
     allTd["td_"+cpt] = objCel_;
     cpt++
   }
+  var acc_ = 0;
+  function isSlice(td) {
+    var w = td.width;
+    switch (true) {
+      case (w === 620 || acc_ === 620):
+        acc_ = 0
+        log(`une slice yeah`)
+        log(typeof td.width)
+        break;
+      case (w < 620):
+        log(acc_)
+        log(`pas de slice acc:${acc_} `)
+        acc_ += w;
+        break;
+      // default:
+      //   break;
+    }
+  }
 
   var acc = 0
   for (const td in allTd) {
 
     const currentTd = allTd[td]
-
-    log(`${td}: ${currentTd.name} `)
+    isSlice(currentTd)
+    // log(`${td}: ${currentTd.name} `);
 
     if(currentTd["width"] == width_prompt){
-      log(`${currentTd.name}.width==${currentTd.width} Une slice une !`)
+      // log(`${currentTd.name}.width==${currentTd.width} Une slice une !`)
     }else if(acc < width_prompt) {
-      log(`acc:${acc} < w_prompt:${width_prompt}`)
-      log(`acc:${acc} += currentTd.width:${currentTd.width} => ${acc} + ${currentTd.width} = ${acc+currentTd.width} `)
+      // log(`acc:${acc} < w_prompt:${width_prompt}`)
+      // log(`acc:${acc} += currentTd.width:${currentTd.width} => ${acc} + ${currentTd.width} = ${acc+currentTd.width} `)
       acc += currentTd.width
       if(acc == width_prompt) {
-        log(`une slice une…`)
+        // log(`une slice une…`)
       }
     }else if(acc == width_prompt){
-      log(`ok acc====${width_prompt} alors on le remet a 0`)
+      // log(`ok acc====${width_prompt} alors on le remet a 0`)
     }else{
       acc = 0
     }
