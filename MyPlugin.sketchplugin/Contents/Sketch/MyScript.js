@@ -49,29 +49,30 @@ var onRun = function(context) {
   let accWidth = 0
   let accTd    = {}
   let cptS     = 1
-  let test = {}
+  let sliceComplet = {}
 
   function isSlice(index, td) {
     var w = td.width;
     var sliceNum = "slice_" + cptS
     switch (true) {
       case (w === artwidth || accWidth === artwidth):
-        // accTd = { 'slice':sliceNum }
         accTd[sliceNum] = {'name':td.name}
+        log(`${cptS}:une slice! num:${sliceNum} avec dedans td.name-> ${td.name} `)
         cptS ++
         accWidth = 0
-        log(`une slice:${sliceNum} yeah, td.name: ${td.name} `)
         break;
 
       case (w < artwidth):
-      // accTd["slice___"+cptS] = {'name':td.name}
-        log(`slice___${cptS}->${td.name} `)
+        // log(`slice_${cptS}->${td.name} `)
+        log(`${cptS}:${sliceNum}->${td.name} `)
         accWidth += w
-        // le bug est ici on vide l'objet sans accumuler les td
         // créa clef td_num
-        test["td_"+index] = td
+        sliceComplet["td_"+index] = td
+        log(`index->${index} `)
+        accTd[sliceNum] = sliceComplet["td_"+index]
+
         if(accWidth === artwidth){
-          log(`une autre slice:${td.name} slice_${cptS} `)
+          log(`une autre slice: ${sliceNum} avec dedans: ${sliceComplet} `)
           cptS ++
         }
         break;
@@ -84,13 +85,9 @@ var onRun = function(context) {
     const currentTd = allTd[td];
     isSlice(idx, currentTd)
     idx++
-    // log(`${td}: ${currentTd.name} `);
   }
-  // log(`obj accTd `);log(accTd);
-  log(test)
-  // for (const key in test) {
-  // }
 
-  // si la td != width_prompt et que la suivante à une val y != alors c'est une table imbriquée
-  // log(listerToutesLesPropriétés(objCel.td_1))
+  log(accTd)
+  log(sliceComplet)
+
 }
