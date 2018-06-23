@@ -58,46 +58,35 @@ var onRun = function(context) {
     allTd["td_"+cpt] = objCel_;
     cpt++
   }
-  var acc_ = 0;
+
+  let accWidth = 0
+  let accTd = {}
   function isSlice(td) {
     var w = td.width;
     switch (true) {
-      case (w === 620 || acc_ === 620):
-        acc_ = 0
-        log(`une slice yeah`)
-        log(typeof td.width)
+      case (w === 620 || accWidth === 620):
+        accWidth = 0
+        log(`une slice yeah, td.name: ${td.name} `)
         break;
       case (w < 620):
-        log(acc_)
-        log(`pas de slice acc:${acc_} `)
-        acc_ += w;
+        accTd += td.name
+        log(accWidth)
+        log(`pas de slice accWidth:${accWidth} `)
+        accWidth += w;
+        if(accWidth === 620){
+          log(`une autre slice:${accTd}`)
+        }
         break;
       // default:
       //   break;
     }
   }
 
-  var acc = 0
   for (const td in allTd) {
 
     const currentTd = allTd[td]
     isSlice(currentTd)
     // log(`${td}: ${currentTd.name} `);
-
-    if(currentTd["width"] == width_prompt){
-      // log(`${currentTd.name}.width==${currentTd.width} Une slice une !`)
-    }else if(acc < width_prompt) {
-      // log(`acc:${acc} < w_prompt:${width_prompt}`)
-      // log(`acc:${acc} += currentTd.width:${currentTd.width} => ${acc} + ${currentTd.width} = ${acc+currentTd.width} `)
-      acc += currentTd.width
-      if(acc == width_prompt) {
-        // log(`une slice une…`)
-      }
-    }else if(acc == width_prompt){
-      // log(`ok acc====${width_prompt} alors on le remet a 0`)
-    }else{
-      acc = 0
-    }
 
   }
 
