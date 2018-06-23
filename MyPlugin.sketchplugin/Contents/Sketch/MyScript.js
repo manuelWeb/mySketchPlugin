@@ -77,7 +77,7 @@ var onRun = function(context) {
         case (w < 620):
         // accTd["slice___"+cptS] = {'name':td.name}
         accTd["slice___"+cptS] = td.name
-        log(accTd)
+        log(`slice___${cptS}::::${accTd["slice___"+cptS]} `)
         // accTd[td.name] = { 'width':td.width }
         // log(`pas de slice accWidth:${accWidth} `)
         accWidth += w;
