@@ -60,21 +60,30 @@ var onRun = function(context) {
   }
 
   let accWidth = 0
-  let accTd = {}
+  let accTd    = {}
+  let cptS     = 1
+
   function isSlice(td) {
     var w = td.width;
+    var sliceNum = "slice_" + cptS
     switch (true) {
       case (w === 620 || accWidth === 620):
+        // accTd = { 'slice':sliceNum }
+        accTd[sliceNum] = {'name':td.name}
+        cptS ++
         accWidth = 0
-        log(`une slice yeah, td.name: ${td.name} `)
+        log(`une slice:${sliceNum} yeah, td.name: ${td.name} `)
         break;
-      case (w < 620):
-        // accTd = {'name':td.name};
-        accTd[td.name] = {'width':td.width}
-        log(`pas de slice accWidth:${accWidth} `)
+        case (w < 620):
+        // accTd["slice___"+cptS] = {'name':td.name}
+        accTd["slice___"+cptS] = td.name
+        log(accTd)
+        // accTd[td.name] = { 'width':td.width }
+        // log(`pas de slice accWidth:${accWidth} `)
         accWidth += w;
         if(accWidth === 620){
-          log(`une autre slice:${accTd[td.name]}`)
+          log(`une autre slice:${td.name} slice_${cptS} `)
+          cptS ++
         }
         break;
       // default:
