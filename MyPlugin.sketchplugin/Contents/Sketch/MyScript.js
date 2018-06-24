@@ -56,23 +56,27 @@ var onRun = function(context) {
     var sliceNum = "slice_" + cptS
     switch (true) {
       case (w === artwidth || accWidth === artwidth):
-        accTd[sliceNum] = {'name':td.name}
-        log(`${cptS}:une slice! num:${sliceNum} avec dedans td.name-> ${td.name} `)
+        // accTd[sliceNum] = {'name':td.name}
+        // log(`${cptS}:une slice! num:${sliceNum} avec dedans td.name-> ${td.name} `)
+        // sliceComplet[sliceNum] = td
+        // sliceComplet[sliceNum] = sliceComplet["td_"+index] = td
+        sliceComplet[sliceNum] = "td_"+index
+        // log(sliceComplet["td_"+index])
         cptS ++
         accWidth = 0
         break;
 
       case (w < artwidth):
         // log(`slice_${cptS}->${td.name} `)
-        log(`${cptS}:${sliceNum}->${td.name} `)
+        // log(`${cptS}:${sliceNum}->${td.name} `)
         accWidth += w
         // créa clef td_num
         sliceComplet["td_"+index] = td
-        log(`index->${index} `)
+        // log(`index->${index} `)
         accTd[sliceNum] = sliceComplet["td_"+index]
 
         if(accWidth === artwidth){
-          log(`une autre slice: ${sliceNum} avec dedans: ${sliceComplet} `)
+          // log(`une autre slice: ${sliceNum} avec dedans: ${sliceComplet} `)
           cptS ++
         }
         break;
@@ -87,7 +91,13 @@ var onRun = function(context) {
     idx++
   }
 
-  log(accTd)
+  // log(accTd)
+  sliceComplet.slice_1 = {
+    "maClef":{
+      "clef1": "maValeur"
+    }
+  }
+  log(sliceComplet.slice_1.maClef)
   log(sliceComplet)
 
 }
