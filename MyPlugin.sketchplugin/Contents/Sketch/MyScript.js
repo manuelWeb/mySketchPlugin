@@ -80,9 +80,12 @@ var onRun = function(context) {
         // log(`${cptS}:${sliceNum}->${td.name} `)
         accWidth += w
         // créa clef td_num
-        sliceComplet["td_"+index] = td
-        // log(`index->${index} `)
-        accTd[sliceNum] = sliceComplet["td_"+index]
+        // sliceComplet["td_"+index] = td
+        sliceComplet[sliceNum] = {
+          ["td_"+index] : td
+        }
+        log("vous etes ici:" + sliceComplet.slice_2["td_"+index].name)
+        // accTd[sliceNum] = sliceComplet["td_"+index]
 
         if(accWidth === artwidth){
           // log(`une autre slice: ${sliceNum} avec dedans: ${sliceComplet} `)
