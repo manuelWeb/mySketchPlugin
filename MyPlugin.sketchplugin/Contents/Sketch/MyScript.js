@@ -60,7 +60,16 @@ var onRun = function(context) {
         // log(`${cptS}:une slice! num:${sliceNum} avec dedans td.name-> ${td.name} `)
         // sliceComplet[sliceNum] = td
         // sliceComplet[sliceNum] = sliceComplet["td_"+index] = td
-        sliceComplet[sliceNum] = "td_"+index
+        // sliceComplet[sliceNum] = "td_"+index
+        // "clef1": "maValeur"
+        // sliceComplet[sliceNum] = {
+        //   ["td_"+index]:{
+        //     "td": td
+        //   }
+        // }
+        sliceComplet[sliceNum] = {
+          ["td_"+index]: td
+        }
         // log(sliceComplet["td_"+index])
         cptS ++
         accWidth = 0
@@ -92,12 +101,12 @@ var onRun = function(context) {
   }
 
   // log(accTd)
-  sliceComplet.slice_1 = {
-    "maClef":{
-      "clef1": "maValeur"
-    }
-  }
-  log(sliceComplet.slice_1.maClef)
+  // sliceComplet.slice_1 = {
+  //   "maClef":{
+  //     "clef1": "maValeur"
+  //   }
+  // }
+  // log(sliceComplet.slice_1.maClef)
   log(sliceComplet)
 
 }
