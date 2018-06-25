@@ -51,34 +51,31 @@ var onRun = function(context) {
   let accTd    = {}
   let cptS     = 1
   let sliceComplet = {}
+  let objTemp = {}
 
   function isSlice(index, td) {
     var w = td.width;
     var sliceNum = "slice_" + cptS
     switch (true) {
       case (w === artwidth || accWidth === artwidth):
-        sliceComplet[sliceNum] = {
-          ["td_"+index]: td
-        }
+        sliceComplet[sliceNum] = { ["td_"+index]: td }
         // log(sliceComplet["td_"+index])
         cptS ++
         accWidth = 0
         break;
 
-      case (w < artwidth):
+        case (w < artwidth):
         accWidth += w
-        // créa clef td_num
-        sliceComplet["td_"+index] = td
         // sliceComplet[sliceNum] = { ["td_"+index] : td }
         // log("vous etes ici:" + sliceComplet[sliceNum]["td_"+index].name)
-
-        // sliceComplet[sliceNum]["td_"+index] = {
-        //   "keyItel1": "valueItem1",
-        //   "keyItel2": "valueItem2"
-        // }
+        objTemp["td_"+index] = td
+        // sliceComplet["td_"+index] = td
 
         if(accWidth === artwidth){
+          sliceComplet[sliceNum] = objTemp;
+          objTemp= {}
           // log(`une autre slice: ${sliceNum} avec dedans: ${sliceComplet} `)
+          accWidth = 0
           cptS ++
         }
         break;
@@ -101,5 +98,6 @@ var onRun = function(context) {
   // }
   // log(sliceComplet.slice_1.maClef)
   log(sliceComplet)
+  // log(objTemp)
 
 }
