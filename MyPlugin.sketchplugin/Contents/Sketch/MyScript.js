@@ -49,7 +49,6 @@ var onRun = function(context) {
   }
 
   let accWidth = 0
-  let accTd    = {}
   let cptS     = 1
   let sliceComplet = {}
   let objTemp = {}
@@ -66,19 +65,7 @@ var onRun = function(context) {
         break;
 
         case (w < artwidth):
-        accWidth += w
-        // sliceComplet[sliceNum] = { ["td_"+index] : td }
-        // log("vous etes ici:" + sliceComplet[sliceNum]["td_"+index].name)
-        objTemp["td_"+index] = td
-        // sliceComplet["td_"+index] = td
-
-        if(accWidth === artwidth){
-          sliceComplet[sliceNum] = objTemp;
-          objTemp= {}
-          // log(`une autre slice: ${sliceNum} avec dedans: ${sliceComplet} `)
-          accWidth = 0
-          cptS ++
-        }
+          ({ accWidth, objTemp, cptS } = newFunction(accWidth, w, objTemp, index, td, artwidth, sliceComplet, sliceNum, cptS));
         break;
       // default:
       //   break;
@@ -102,3 +89,17 @@ var onRun = function(context) {
   // log(objTemp)
 
 }
+function newFunction(accWidth, w, objTemp, index, td, artwidth, sliceComplet, sliceNum, cptS) {
+  accWidth += w;
+  // log("vous etes ici:" + sliceComplet[sliceNum]["td_"+index].name)
+  objTemp["td_" + index] = td;
+  if (accWidth === artwidth) {
+    sliceComplet[sliceNum] = objTemp;
+    objTemp = {};
+    // log(`une autre slice: ${sliceNum} avec dedans: ${sliceComplet} `)
+    accWidth = 0;
+    cptS++;
+  }
+  return { accWidth, objTemp, cptS };
+}
+
