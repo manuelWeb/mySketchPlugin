@@ -62,17 +62,17 @@ var onRun = function(context) {
     switch (true) {
       // slice avec une td
       case (w === artwidth || accWidth === artwidth):
-      ({ accWidth, objTemp, cptS } = noNestedTab(accWidth, w, objTemp, idxTD, td, artwidth, sliceComplet, sliceNum, cptS));
+        // log(`td: ${td.name} x-> ${x}, idxTD: ${idxTD} `)
+        ;({ accWidth, objTemp, cptS } = noNestedTab(accWidth, w, objTemp, idxTD, td, artwidth, sliceComplet, sliceNum, cptS));
       break;
 
       // slice avec plusieurs td mais pas d'imbrication
       case (w < artwidth):
-        log(`td: ${td.name} x-> ${x} `);
-        // if(objTemp['td_'+idxTD]){log(objTemp['td_'+idxTD])};
-        if( objTemp["td_1"] ){
-          log(objTemp);log(idxTD)
-        };
-        ({ accWidth, objTemp, cptS } = noNestedTab(accWidth, w, objTemp, idxTD, td, artwidth, sliceComplet, sliceNum, cptS));
+        // log(`td: ${td.name} x-> ${x} `);
+        // if( objTemp[`td_${idxTD-1}`] ){
+        //   log(objTemp[`td_${idxTD-1}`])
+        // }
+        ;({ accWidth, objTemp, cptS } = noNestedTab(accWidth, w, objTemp, idxTD, td, artwidth, sliceComplet, sliceNum, cptS));
       break;
       // default:
       //   break;
@@ -91,6 +91,15 @@ var onRun = function(context) {
 function noNestedTab(accWidth, w, objTemp, idxTD, td, artwidth, sliceComplet, sliceNum, cptS) {
   accWidth += w;
   objTemp["td_" + idxTD] = td;
+
+  // if( objTemp[`td_${idxTD}`] ){
+  //   log('objTemp[td_'+idxTD+'] -> ');log(objTemp[`td_${idxTD}`]);
+  // }
+
+  // if(td.width === artwidth) {
+  //   sliceComplet[sliceNum] = objTemp;
+  //   objTemp = {};
+  // }
   if (accWidth === artwidth) {
     sliceComplet[sliceNum] = objTemp;
     objTemp = {};
