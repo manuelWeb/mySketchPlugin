@@ -11,6 +11,7 @@ var onRun = function(context) {
   {
       var page = pages[i];
       var artboards = [page artboards];
+      // 0 est artboard le plus bas dans la liste
       artwidth = artboards[0].frame().width()
       log(artwidth)
   }
