@@ -12,6 +12,7 @@ var onRun = function(context) {
       var page = pages[i];
       var artboards = [page artboards];
       artwidth = artboards[0].frame().width()
+      log(artwidth)
   }
 
 // also exposed on Document
@@ -56,17 +57,6 @@ var onRun = function(context) {
     var sliceNum = "slice_" + cptS
     switch (true) {
       case (w === artwidth || accWidth === artwidth):
-        // accTd[sliceNum] = {'name':td.name}
-        // log(`${cptS}:une slice! num:${sliceNum} avec dedans td.name-> ${td.name} `)
-        // sliceComplet[sliceNum] = td
-        // sliceComplet[sliceNum] = sliceComplet["td_"+index] = td
-        // sliceComplet[sliceNum] = "td_"+index
-        // "clef1": "maValeur"
-        // sliceComplet[sliceNum] = {
-        //   ["td_"+index]:{
-        //     "td": td
-        //   }
-        // }
         sliceComplet[sliceNum] = {
           ["td_"+index]: td
         }
@@ -76,16 +66,16 @@ var onRun = function(context) {
         break;
 
       case (w < artwidth):
-        // log(`slice_${cptS}->${td.name} `)
-        // log(`${cptS}:${sliceNum}->${td.name} `)
         accWidth += w
         // créa clef td_num
-        // sliceComplet["td_"+index] = td
-        sliceComplet[sliceNum] = {
-          ["td_"+index] : td
-        }
-        log("vous etes ici:" + sliceComplet.slice_2["td_"+index].name)
-        // accTd[sliceNum] = sliceComplet["td_"+index]
+        sliceComplet["td_"+index] = td
+        // sliceComplet[sliceNum] = { ["td_"+index] : td }
+        // log("vous etes ici:" + sliceComplet[sliceNum]["td_"+index].name)
+
+        // sliceComplet[sliceNum]["td_"+index] = {
+        //   "keyItel1": "valueItem1",
+        //   "keyItel2": "valueItem2"
+        // }
 
         if(accWidth === artwidth){
           // log(`une autre slice: ${sliceNum} avec dedans: ${sliceComplet} `)
