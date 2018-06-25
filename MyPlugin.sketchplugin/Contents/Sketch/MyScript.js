@@ -36,7 +36,7 @@ var onRun = function(context) {
   for(let i = 0; i < selections.count(); i++) {
     const selSlice = selections[i]
     const curName = selSlice.name()
-    const objCel_ = new Cellules(
+    const objCel = new Cellules(
       curName,
       selSlice.frame().width(),
       selSlice.frame().height(),
@@ -44,29 +44,36 @@ var onRun = function(context) {
       selSlice.frame().y()
     )
     // cp sous objet td dans allTd
-    allTd["td_"+cpt] = objCel_;
+    allTd["td_"+cpt] = objCel;
     cpt++
   }
 
   let accWidth = 0
-  let cptS     = 1
-  let sliceComplet = {}
   let objTemp = {}
+  let cptS     = 1
 
-  function isSlice(index, td) {
+  let sliceComplet = {}
+
+  function isSlice(idxTD, td) {
     var w = td.width;
+    var x = td.x;
+    var y = td.y;
     var sliceNum = "slice_" + cptS
     switch (true) {
+      // slice avec une td
       case (w === artwidth || accWidth === artwidth):
-        sliceComplet[sliceNum] = { ["td_"+index]: td }
-        // log(sliceComplet["td_"+index])
-        cptS ++
-        accWidth = 0
-        break;
+      ({ accWidth, objTemp, cptS } = noNestedTab(accWidth, w, objTemp, idxTD, td, artwidth, sliceComplet, sliceNum, cptS));
+      break;
 
-        case (w < artwidth):
-          ({ accWidth, objTemp, cptS } = newFunction(accWidth, w, objTemp, index, td, artwidth, sliceComplet, sliceNum, cptS));
-        break;
+      // slice avec plusieurs td mais pas d'imbrication
+      case (w < artwidth):
+        log(`td: ${td.name} x-> ${x} `);
+        // if(objTemp['td_'+idxTD]){log(objTemp['td_'+idxTD])};
+        if( objTemp["td_1"] ){
+          log(objTemp);log(idxTD)
+        };
+        ({ accWidth, objTemp, cptS } = noNestedTab(accWidth, w, objTemp, idxTD, td, artwidth, sliceComplet, sliceNum, cptS));
+      break;
       // default:
       //   break;
     }
@@ -78,28 +85,22 @@ var onRun = function(context) {
     idx++
   }
 
-  // log(accTd)
-  // sliceComplet.slice_1 = {
-  //   "maClef":{
-  //     "clef1": "maValeur"
-  //   }
-  // }
-  // log(sliceComplet.slice_1.maClef)
   log(sliceComplet)
-  // log(objTemp)
 
 }
-function newFunction(accWidth, w, objTemp, index, td, artwidth, sliceComplet, sliceNum, cptS) {
+function noNestedTab(accWidth, w, objTemp, idxTD, td, artwidth, sliceComplet, sliceNum, cptS) {
   accWidth += w;
-  // log("vous etes ici:" + sliceComplet[sliceNum]["td_"+index].name)
-  objTemp["td_" + index] = td;
+  objTemp["td_" + idxTD] = td;
   if (accWidth === artwidth) {
     sliceComplet[sliceNum] = objTemp;
     objTemp = {};
-    // log(`une autre slice: ${sliceNum} avec dedans: ${sliceComplet} `)
+    // log(`une autre slice: ${sliceNum} avec dedans: `); log(sliceComplet)
     accWidth = 0;
     cptS++;
   }
   return { accWidth, objTemp, cptS };
 }
 
+
+// var arg = ["accWidth", "w", "objTemp", "idxTD", "td", "artwidth", "sliceComplet", "sliceNum", "cptS"]
+// log([...arg])
