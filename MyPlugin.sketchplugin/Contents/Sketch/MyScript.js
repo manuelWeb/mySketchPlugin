@@ -9,12 +9,12 @@ var onRun = function(context) {
   let artwidth     = 0;
   for (let i = 0; i < pages.count(); i++)
   {
-      const page = pages[i];
-      const artboards = [page artboards];
-      // 0 est artboard le plus bas dans la liste
-      artwidth = artboards[0].frame().width()
-      log(artwidth)
+    const page = pages[i];
+    const artboards = [page artboards];
+    // 0 est artboard le plus bas dans la liste
+    artwidth = artboards[0].frame().width()
   }
+  log(artwidth)
 
   // also exposed on Document
   !selections.count() ? doc.showMessage(`Please select slice`) : doc.showMessage(` your selections: ${selections}`)
@@ -61,14 +61,14 @@ var onRun = function(context) {
     switch (true) {
       // slice avec une td
       case (w === artwidth || accWidth === artwidth):
-        // log(`td: ${td.name} x-> ${x}, idxTD: ${idxTD} `)
+        log(`td: ${td.name} x-> ${x},  y-> ${y}, idxTD: ${idxTD} `)
         ;({ accWidth, objTemp, cptS } = noNestedTab(accWidth, w, objTemp, idxTD, td, artwidth, sliceComplet, sliceNum, cptS));
       break;
 
       // slice avec plusieurs td mais sans d'imbrication
       case (w < artwidth):
-        // log(`td: ${td.name} x-> ${x} `);
-        ;({ accWidth, objTemp, cptS } = noNestedTab(accWidth, w, objTemp, idxTD, td, artwidth, sliceComplet, sliceNum, cptS));
+      log(`td: ${td.name} x-> ${x},  y-> ${y} `);
+      ;({ accWidth, objTemp, cptS } = noNestedTab(accWidth, w, objTemp, idxTD, td, artwidth, sliceComplet, sliceNum, cptS));
       break;
       // default:
       //   break;
@@ -88,10 +88,16 @@ function noNestedTab(accWidth, w, objTemp, idxTD, td, artwidth, sliceComplet, sl
   accWidth += w;
   objTemp["td_" + idxTD] = td;
 
-  // if( objTemp[`td_${idxTD}`] ){
-  //   log('objTemp[td_'+idxTD+'] -> ');log(objTemp[`td_${idxTD}`]);
-  // }
+  // nested table
+  if( objTemp[`td_${idxTD-1}`] ) {
+    // log(objTemp[`td_${idxTD-1}-1 -> `]);log(objTemp[`td_${idxTD}`]);
+    log(objTemp[`td_${idxTD-1}`])
+    // log('objTemp[td_'+idxTD+'] -> ' + objTemp[`td_${idxTD}`].y);
+  }else{
+    log('else: ' + objTemp[`td_${idxTD}`].name);
+  }
 
+  // slice avec plusieurs td mais sans d'imbrication remise à 0
   if (accWidth === artwidth) {
     sliceComplet[sliceNum] = objTemp;
     objTemp = {};
