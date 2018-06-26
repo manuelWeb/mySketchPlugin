@@ -89,10 +89,11 @@ function noNestedTab(accWidth, w, objTemp, idxTD, td, artwidth, sliceComplet, sl
   objTemp["td_" + idxTD] = td;
 
   // nested table
+  // if( objTemp[`td_${idxTD-1}`] ) {
   if( objTemp[`td_${idxTD-1}`] ) {
-    // log(objTemp[`td_${idxTD-1}-1 -> `]);log(objTemp[`td_${idxTD}`]);
     log(objTemp[`td_${idxTD-1}`])
-    // log('objTemp[td_'+idxTD+'] -> ' + objTemp[`td_${idxTD}`].y);
+    log("TD.y: " + objTemp[`td_${idxTD}`].y)
+    log("TD-1.y: " + objTemp[`td_${idxTD-1}`].y)
   }else{
     log('else: ' + objTemp[`td_${idxTD}`].name);
   }
