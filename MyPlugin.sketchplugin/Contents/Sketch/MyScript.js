@@ -89,13 +89,19 @@ function noNestedTab(accWidth, w, objTemp, idxTD, td, artwidth, sliceComplet, sl
   objTemp["td_" + idxTD] = td;
 
   // nested table
-  // if( objTemp[`td_${idxTD-1}`] ) {
+  // verif td et td n-1
   if( objTemp[`td_${idxTD-1}`] ) {
-    log(objTemp[`td_${idxTD-1}`])
+    if(objTemp[`td_${idxTD-1}`].y !== objTemp[`td_${idxTD}`].y &&
+    objTemp[`td_${idxTD-1}`].x === objTemp[`td_${idxTD}`].x ) {
+      log('oups ses td sont imb: '
+        + objTemp[`td_${idxTD-1}`].name
+        + ' et ' + objTemp[`td_${idxTD}`].name
+      )
+    }
     log("TD.y: " + objTemp[`td_${idxTD}`].y)
     log("TD-1.y: " + objTemp[`td_${idxTD-1}`].y)
   }else{
-    log('else: ' + objTemp[`td_${idxTD}`].name);
+    log('else: ' + objTemp[`td_${idxTD}`].name + ' n\'a pas de précendente');
   }
 
   // slice avec plusieurs td mais sans d'imbrication remise à 0
