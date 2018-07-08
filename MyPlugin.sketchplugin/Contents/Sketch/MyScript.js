@@ -93,13 +93,22 @@ function noNestedTab(accWidth, w, objTemp, idxTD, td, artwidth, sliceComplet, sl
   if( objTemp[`td_${idxTD-1}`] ) {
     if(objTemp[`td_${idxTD-1}`].y !== objTemp[`td_${idxTD}`].y &&
     objTemp[`td_${idxTD-1}`].x === objTemp[`td_${idxTD}`].x ) {
-      log('oups ses td sont imb: '
+      log('oups ces td sont imb: '
         + objTemp[`td_${idxTD-1}`].name
         + ' et ' + objTemp[`td_${idxTD}`].name
       )
+      var addHeightPrev = objTemp[`td_${idxTD-1}`].height
+      var addHeightLast = objTemp[`td_${idxTD}`].height
+      // if(objTemp[`td_${idxTD-1}`].name != objTemp[`td_${idxTD}`].name ){
+      //   log('addHeightPrev:'+addHeightPrev+': '+objTemp[`td_${idxTD-1}`].name)
+      //   log('addHeightLast:'+addHeightLast+': '+objTemp[`td_${idxTD}`].name)
+      // }
+      if(objTemp[`td_${idxTD}`] ){
+        log('filtre: '+objTemp[`td_${idxTD}`].name)
+      }
     }
-    log("TD.y: " + objTemp[`td_${idxTD}`].y)
-    log("TD-1.y: " + objTemp[`td_${idxTD-1}`].y)
+    // créer une td avec add height
+    fctLogExtraite();
   }else{
     log('else: ' + objTemp[`td_${idxTD}`].name + ' n\'a pas de précendente');
   }
@@ -113,6 +122,11 @@ function noNestedTab(accWidth, w, objTemp, idxTD, td, artwidth, sliceComplet, sl
     cptS++;
   }
   return { accWidth, objTemp, cptS };
+
+  function fctLogExtraite() {
+    log("TD.y: " + objTemp[`td_${idxTD}`].y);
+    log("TD-1.y: " + objTemp[`td_${idxTD - 1}`].y);
+  }
 }
 
 
