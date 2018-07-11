@@ -55,52 +55,63 @@ var onRun = function(context) {
   var test = {}
   var cp = 0
 
-  function isSlice(idxTD, td) {
-    const w = td.width;
-    const x = td.x;
-    const y = td.y;
-    const sliceNum = "slice_" + cptS
-    switch (true) {
-      // slice avec une td
-      case (w === artwidth || accWidth === artwidth):
-        log(`indx...: ${idxTD}...cptS: ${cptS} `)
-        log(`td_fc: ${td.name} x-> ${x},  y-> ${y},  w-> ${w}, idxTD: ${idxTD} `)
-        ;({ accWidth, objTemp, cptS } = noNestedTab(accWidth, w, objTemp, idxTD, td, artwidth, sliceComplet, sliceNum, cptS));
-      break;
-
-      // case (w < artwidth):
-      //   log('objTemp')
-      // break;
-      // cas td.w<artboard.w -> add td dans objTemp
-      case (w < artwidth):
-        // if(objTemp[`td_${idxTD-1}`]){
-        //   log(objTemp)
-        // }
-        if(sliceComplet['slice_'+idxTD]) {
-          log(`sliceComplet: ${sliceComplet['slice_'+idxTD].td_0.name} cptS:${cptS}`)
-        }
-        log(`td: ${td.name} x-> ${x},  y-> ${y},  w-> ${w}, idxTD: ${idxTD} `);
-        cp ++;
-        ;({ accWidth, objTemp, cptS } = noNestedTab(accWidth, w, objTemp, idxTD, td, artwidth, sliceComplet, sliceNum, cptS));
-      break;
-
-      // default:
-      //   break;
-    }
-  }
-  let idx = 0;
+  let idx = 1;
+  let objAllTD = {}
   for (const td in allTd) {
-    const currentTd = allTd[td];
-    isSlice(idx, currentTd)
+    // const currentTd = allTd[td];
+    // isSlice(idx, currentTd)
+    objAllTD['index_'+idx] = allTd[td]
+    // objAllTD.push(allTd[td])
     idx++
   }
 
+  log(`objAllTD size: ${Object.keys(objAllTD).length} `)
+  const size = Object.keys(objAllTD).length
+  log(`objAllTD: `);
+  log(objAllTD)
+  log(objAllTD['index_'+size].name);log(objAllTD['index_'+size].width);
+  for (let index = 1; index <= size; index++) {
+    if(objAllTD['index_'+index] && objAllTD['index_'+index].width === 620){
+      log(`slice avec une TD: ` + objAllTD['index_'+index].name)
+    }
+
+  }
+
+  // log(objAllTD)
   log(sliceComplet)
 
 }
+
 function noNestedTab(accWidth, w, objTemp, idxTD, td, artwidth, sliceComplet, sliceNum, cptS) {
   accWidth += w;
   objTemp["td_" + idxTD] = td;
+
+
+  // slice avec plusieurs td mais sans d'imbrication remise à 0
+  if (accWidth === artwidth) {
+    // une slice avec td unique
+    sliceComplet[sliceNum] = objTemp;
+    logSimpleSlc(`cptS: ${cptS}, sliceNum: ${sliceNum}, idxTD: ${idxTD}, td.x: ${td.x} `)
+    objTemp = {};
+    accWidth = 0;
+    cptS++;
+
+  }
+  return { accWidth, objTemp, cptS };
+
+  // function fctLogExtraite() {
+  //   log("TD.y: " + objTemp[`td_${idxTD}`].y);
+  //   log("TD-1.y: " + objTemp[`td_${idxTD - 1}`].y);
+  // }
+  function logSimpleSlc(arg) {
+    // log(arg)
+  }
+}
+
+
+// var arg = ["accWidth", "w", "objTemp", "idxTD", "td", "artwidth", "sliceComplet", "sliceNum", "cptS"]
+// log([...arg])
+
 
   // nested table
   // verif td et td n-1
@@ -127,45 +138,12 @@ function noNestedTab(accWidth, w, objTemp, idxTD, td, artwidth, sliceComplet, sl
   //   log('else: ' + objTemp[`td_${idxTD}`].name + ' n\'a pas de précendente');
   // }
 
-  // slice avec plusieurs td mais sans d'imbrication remise à 0
-  if (accWidth === artwidth) {
-    // log('sliceComp:'+objTemp[`td_${idxTD}`].name)
-    var preced = objTemp[`td_${idxTD} - 1`]
-    var suivan = objTemp[`td_${idxTD}`]
-    if(preced){
-      if(preced.y === suivan.y){
-        sliceComplet[sliceNum] = objTemp
-        logMultiple(objTemp[`td_${idxTD}`].name)
-        objTemp = {};
-        accWidth = 0;
-        cptS++;
-      }else if(preced.y != suivan.y){
-        log(preced.y)//preced.x === suivan.x
-      }
-    } else {
-      // une slice avec td unique
-      sliceComplet[sliceNum] = objTemp;
-      logSimple(objTemp[`td_${idxTD}`].name)
-      objTemp = {};
-      accWidth = 0;
-      cptS++;
-    }
-    // log(`une autre slice: ${sliceNum} avec dedans: `); log(sliceComplet)
-  }
-  return { accWidth, objTemp, cptS };
 
-  // function fctLogExtraite() {
-  //   log("TD.y: " + objTemp[`td_${idxTD}`].y);
-  //   log("TD-1.y: " + objTemp[`td_${idxTD - 1}`].y);
-  // }
-  function logSimple(arg) {
-    log(arg)
-  }
-  function logMultiple(arg) {
-    log(arg)
-  }
-}
-
-
-// var arg = ["accWidth", "w", "objTemp", "idxTD", "td", "artwidth", "sliceComplet", "sliceNum", "cptS"]
-// log([...arg])
+// Object.size = function(obj) {
+//   let size = 0, key;
+//   for (key in obj) {
+//       if (obj.hasOwnProperty(key)) size++;
+//   }
+//   return size;
+// };
+// log(`objAllTD size: ${Object.size(objAllTD)} `)
