@@ -66,18 +66,30 @@ var onRun = function(context) {
   log(objAllTD)
   log(objAllTD['index_'+size].name);log(objAllTD['index_'+size].width);
 
-  for (let index = 1; index <= size; index++) {
-    if(objAllTD['index_'+index] && objAllTD['index_'+index].width === 620){
-      log(`slice avec une TD: ` + objAllTD['index_'+index].name)
-      accWidth = 0
-    }
-    if(objAllTD['index_'+index]){
-      log(`${objAllTD['index_'+index-1]} `)
-    }
+  let keys = Object.keys(objAllTD);
+  for(let i = 0; i < keys.length; i++) {
+
+    const current  = keys[i];
+    const previous = keys[i - 1];
+    const next     = keys[i + 1];
+
+    log(`curr: ${objAllTD[current].name} `)
+    if(previous){ log(`prev: ${objAllTD[previous].name} `) }
+    if(next){ log(`next: ${objAllTD[next].name} `) }
 
   }
 
+  // for (let index = 1; index <= size; index++) {
+  //   if(objAllTD['index_'+index] && objAllTD['index_'+index].width === 620){
+  //     log(`slice avec une TD: ` + objAllTD['index_'+index].name)
+  //     accWidth = 0
+  //   }
+  //   if(objAllTD['index_'+index]){
+  //     log(`${objAllTD['index_'+index-1]} `)
+  //   }
+
+  // }
+
   // log(objAllTD)
-  log(sliceComplet)
 
 }
