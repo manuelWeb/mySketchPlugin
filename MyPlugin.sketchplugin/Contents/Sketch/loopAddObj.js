@@ -54,8 +54,16 @@ const objAllTD ={
       width: 199,
       x: 421,
       y: 337,
+    }
+    // ,
+    // "index_9":     {
+    //     height: 122,
+    //     name: "s4",
+    //     width: 620,
+    //     x: 421,
+    //     y: 337,
+    // }
   }
-}
 let sliceComplet = {}
 let accWidth     = 0
 let   keys       = Object.keys(objAllTD);
@@ -65,10 +73,11 @@ let   objSlice   = {}
 
 for(let i = 0; i < keys.length; i++) {
 
-  const current  = keys[i];
-  const previous = keys[i - 1];
-  const next     = keys[i + 1];
-
+  const current  = keys[i]
+  // const previous = objAllTD.keys[i - 1] ? keys[i - 1] : keys['nonePrev']
+  // const next     = objAllTD.keys[i + 1] ? keys[i + 1] : keys['noneNext']
+  const previous = keys[i - 1]
+  const next     = keys[i + 1]
 
   if(objAllTD[current].width === 620){
     console.log(`slice avec une TD: ` + objAllTD[current].name)
@@ -78,27 +87,27 @@ for(let i = 0; i < keys.length; i++) {
   }
 
   if( objAllTD[current].width < 620 && accWidth < 620 ){
+    if(objAllTD[current].x === objAllTD[next].x){
+      console.log('oups!!!!!!!!!!!!!!!');
+    }
+    console.log(objAllTD[current].name, objAllTD[current].x);
     accWidth += objAllTD[current].width
-    // objSlice[ 'slice_' + num ] = { ['td_'+numtd]: objAllTD[current].name }
+    // éviter la mutabilité de slice_num
     if(!objSlice[ 'slice_' + num ]){
       objSlice[ 'slice_' + num ] = {['td_'+numtd]: objAllTD[current].name}
       console.log('pas de ssobj on le creer: ',objSlice[ 'slice_' + num ]);
     }else{
-      console.log('ssobj ok on rempli');
       objSlice[ 'slice_' + num ]['td_'+numtd] = objAllTD[current].name
+      console.log('ssobj ok on rempli',objSlice[ 'slice_' + num ]['td_'+numtd]);
     }
-    // console.log( objSlice[ 'slice_' + num ].hasOwnProperty('td_') )
-    // console.log(objSlice[ 'slice_' + num ]['td_'+numtd])
-    // console.log(objSlice)
-    // console.log( ` ['td_'+numtd]:${['td_'+numtd]} ` )
     numtd++
     if ( accWidth === 620 ) {
       console.log(`une slice complet td derniere: ${objAllTD[current].name} `)
       accWidth = 0
+      numtd = 1
       num++
     }
   }
-  // numtd = 1
 
 }
-console.log(objSlice.slice_2.td_2)
+console.log(objSlice)
