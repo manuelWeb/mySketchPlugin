@@ -67,7 +67,7 @@ var onRun = function(context) {
   let   objSlice = {}
 
   log(objAllTD['index_'+size].name);log(objAllTD['index_'+size].width);
-  // log(objAllTD)
+  log(objAllTD)
 
   for(let i = 0; i < keys.length; i++) {
 
@@ -78,41 +78,35 @@ var onRun = function(context) {
 
     if(objAllTD[current].width === 620){
       log(`slice avec une TD: ` + objAllTD[current].name)
-      // log(objAllTD[current].name)
-      log('tdidx_'+numtd)
-      // objSlice['slice_'+num] = 'tdidx_'+numtd
-      // objSlice[ 'slice_' + num ][ 'tdidx_' + numtd ] = objAllTD[current].name
-      // objSlice[ 'slice_' + num ] = objAllTD[current].name
-      objSlice[ 'slice_' + num ] = 'td_'+numtd
-      objSlice[ 'slice_' + num ]['td_'+numtd] = objAllTD[current].name
+      objSlice[ 'slice_' + num ] = {['td_'+numtd]: objAllTD[current].name}
 
       accWidth = 0
       num++
-      numtd++
     }
 
-    // if( objAllTD[current].width < 620 && accWidth < 620 ){
-    //   log(`slice multi TD: ${objAllTD[current].name}, accWidth: ${accWidth} `)
-    //   // objSlice = objAllTD[current].name
-    //   accWidth += objAllTD[current].width
-    //   objSlice[slNum+num][tdidx+numtd] = objAllTD[current].name
-    //   if ( accWidth === 620 ) {
-    //     accWidth = 0
-    //     tdidx++
-    //     num++
-    //   }
-    // }
-
-    // log(`curr: ${objAllTD[current].name} `)
-    // if(previous){ log(`prev: ${objAllTD[previous].name} `) }
-    // if(next){ log(`next: ${objAllTD[next].name} `) }
+    if( objAllTD[current].width < 620 && accWidth < 620 ){
+      accWidth += objAllTD[current].width
+      // log(`slice multi TD: ${objAllTD[current].name}, accWidth: ${accWidth} `)
+      objSlice[ 'slice_' + num ] = { ['td_'+numtd]: objAllTD[current].name }
+      log(objSlice)
+      log( ` ['td_'+numtd]:${['td_'+numtd]} ` )
+      numtd++
+      if ( accWidth === 620 ) {
+        log(`une slice complet td derniere: ${objAllTD[current].name} `)
+        accWidth = 0
+        num++
+      }
+    }
+    // numtd = 1
 
   }
 
   log(objSlice)
   // log(`objSlice: ${objSlice.slice_1.tdidx_1}`)
   // log(`objSlice: ${objSlice.slice_1.tdidx_1}`)
-  log(`objSlice.keys.length: ${Object.keys(objSlice).length}`)
+
+  // log(`objSlice.keys.length: ${Object.keys(objSlice).length}`)
+
   // for (let index = 1; index <= size; index++) {
   //   if(objAllTD['index_'+index] && objAllTD['index_'+index].width === 620){
   //     log(`slice avec une TD: ` + objAllTD['index_'+index].name)
