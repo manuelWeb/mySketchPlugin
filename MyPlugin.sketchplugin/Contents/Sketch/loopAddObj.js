@@ -86,19 +86,26 @@ for(let i = 0; i < keys.length; i++) {
     num++
   }
 
+  if(objAllTD.hasOwnProperty(next)
+     && objAllTD[current].x === objAllTD[next].x
+     && objAllTD[current].width === objAllTD[next].width){
+    console.log(`
+      objAllTD[current].x: ${objAllTD[current].name}:${objAllTD[current].x},w:${objAllTD[current].width} 
+      objAllTD[next].x ${objAllTD[next].name}:${objAllTD[next].x},w:${objAllTD[next].width} 
+      objAllTD[current].y: ${objAllTD[current].name}:${objAllTD[current].y},w:${objAllTD[current].width}, 
+      objAllTD[next].y ${objAllTD[next].name}:${objAllTD[next].y},w:${objAllTD[next].width} 
+      `
+    );
+  }
   if( objAllTD[current].width < 620 && accWidth < 620 ){
-    if(objAllTD[current].x === objAllTD[next].x){
-      console.log('oups!!!!!!!!!!!!!!!');
-    }
-    console.log(objAllTD[current].name, objAllTD[current].x);
     accWidth += objAllTD[current].width
     // éviter la mutabilité de slice_num
     if(!objSlice[ 'slice_' + num ]){
       objSlice[ 'slice_' + num ] = {['td_'+numtd]: objAllTD[current].name}
-      console.log('pas de ssobj on le creer: ',objSlice[ 'slice_' + num ]);
+      // console.log('pas de ssobj on le creer: ',objSlice[ 'slice_' + num ]);
     }else{
       objSlice[ 'slice_' + num ]['td_'+numtd] = objAllTD[current].name
-      console.log('ssobj ok on rempli',objSlice[ 'slice_' + num ]['td_'+numtd]);
+      // console.log('ssobj ok on rempli',objSlice[ 'slice_' + num ]['td_'+numtd]);
     }
     numtd++
     if ( accWidth === 620 ) {
