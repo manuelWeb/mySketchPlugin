@@ -39,27 +39,26 @@ const objAllTD ={
       height: 122, width: 199,
       x: 421, y: 337,
     }
-    // ,
-    // "index_9":     {
-    //     height: 122,
-    //     name: "s4",
-    //     width: 620,
-    //     x: 421,
-    //     y: 337,
-    // }
+    ,
+    "index_9":     {
+        height: 122,
+        name: "s4",
+        width: 620,
+        x: 421,
+        y: 337,
+    }
   }
 let sliceComplet = {}
 let accWidth     = 0
-let   keys       = Object.keys(objAllTD);
-let   numtd      = 1
-let   num        = 1
-let   objSlice   = {}
+let keys         = Object.keys(objAllTD);
+let numtd        = 1
+let num          = 1
+let objSlice     = {}
+let nestedObj    = {}
 
 for(let i = 0; i < keys.length; i++) {
 
   const current  = keys[i]
-  // const previous = objAllTD.keys[i - 1] ? keys[i - 1] : keys['nonePrev']
-  // const next     = objAllTD.keys[i + 1] ? keys[i + 1] : keys['noneNext']
   const previous = keys[i - 1]
   const next     = keys[i + 1]
 
@@ -71,16 +70,16 @@ for(let i = 0; i < keys.length; i++) {
   }
 
   if(objAllTD.hasOwnProperty(next)
-     && objAllTD[current].x === objAllTD[next].x
-     && objAllTD[current].width === objAllTD[next].width){
-    console.log(`
-      objAllTD[current].x: ${objAllTD[current].name}:${objAllTD[current].x},w:${objAllTD[current].width} 
-      objAllTD[next].x ${objAllTD[next].name}:${objAllTD[next].x},w:${objAllTD[next].width} 
-      objAllTD[current].y: ${objAllTD[current].name}:${objAllTD[current].y},w:${objAllTD[current].width}, 
-      objAllTD[next].y ${objAllTD[next].name}:${objAllTD[next].y},w:${objAllTD[next].width} 
-      `
-    );
+    && objAllTD[current].x === objAllTD[next].x
+    && objAllTD[current].width === objAllTD[next].width){
+      nestedObj['td_'+numtd] = objAllTD[current]
+      console.log(`objAllTD[current]:${objAllTD[current].name} newOjb`);
+      console.log(`objAllTD[next]:${objAllTD[next].name} newOjb-nxt`);
+      // if(objAllTD[current] && objAllTD[previous]){ }
+  }else{
+    nestedObj['td_'+numtd] = objAllTD[current]
   }
+
   if( objAllTD[current].width < 620 && accWidth < 620 ){
     accWidth += objAllTD[current].width
     // éviter la mutabilité de slice_num
@@ -102,3 +101,25 @@ for(let i = 0; i < keys.length; i++) {
 
 }
 console.log(objSlice)
+console.log(nestedObj)
+
+// if(objAllTD.hasOwnProperty(next) && objAllTD[current].x === objAllTD[next].x){
+//   console.log(`objAllTD[current]:${objAllTD[current].name} newOjb ifX2`);
+// }
+
+// else{
+//   console.log(`objAllTD[current]:${objAllTD[current].name} newOjb_else`);
+// }
+
+// if(objAllTD.hasOwnProperty(next)
+//    && objAllTD[current].x === objAllTD[next].x
+//    && objAllTD[current].width === objAllTD[next].width){
+//   console.log(
+//     `
+//     objAllTD[current]:${objAllTD[current].name} x:${objAllTD[current].x}, w:${objAllTD[current].width}
+//     objAllTD[next]:${objAllTD[next].name} x:${objAllTD[next].x}, w:${objAllTD[next].width}
+//     objAllTD[current]:${objAllTD[current].name} y:${objAllTD[current].y}, w:${objAllTD[current].width},
+//     objAllTD[next]:${objAllTD[next].name} y:${objAllTD[next].y}, w:${objAllTD[next].width}
+//     `
+//   );
+// }
