@@ -69,16 +69,22 @@ for(let i = 0; i < keys.length; i++) {
     num++
   }
 
-  if(objAllTD.hasOwnProperty(next)
-    && objAllTD[current].x === objAllTD[next].x
-    && objAllTD[current].width === objAllTD[next].width){
+  if( objAllTD.hasOwnProperty(next) ){
+    if(objAllTD[current].x === objAllTD[next].x
+      && objAllTD[current].width === objAllTD[next].width){
+      // nestedObj.hasOwnProperty(objAllTD[current].name) ? console.log('pas de ...') : nestedObj['td_'+numtd] = objAllTD[current]
+      console.log(nestedObj['td_'+numtd])
       nestedObj['td_'+numtd] = objAllTD[current]
+      nestedObj['td_'+ parseInt(numtd+1)] = objAllTD[next]
+      // nestedObj['td_'+numtd].name === objAllTD[next].name ? 'vrai' : 'faux'
       console.log(`objAllTD[current]:${objAllTD[current].name} newOjb`);
       console.log(`objAllTD[next]:${objAllTD[next].name} newOjb-nxt`);
-      // if(objAllTD[current] && objAllTD[previous]){ }
-  }else if(objAllTD[current].width){
-    nestedObj['td_'+numtd] = objAllTD[current]
+    }
+    // if(objAllTD[current] && objAllTD[previous]){ }
   }
+  // else if(objAllTD[current].width){
+  //   nestedObj['td_'+numtd] = objAllTD[current]
+  // }
 
   if( objAllTD[current].width < 620 && accWidth < 620 ){
     accWidth += objAllTD[current].width
