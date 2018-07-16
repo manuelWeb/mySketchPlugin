@@ -76,7 +76,7 @@ for(let i = 0; i < keys.length; i++) {
       console.log(`objAllTD[current]:${objAllTD[current].name} newOjb`);
       console.log(`objAllTD[next]:${objAllTD[next].name} newOjb-nxt`);
       // if(objAllTD[current] && objAllTD[previous]){ }
-  }else{
+  }else if(objAllTD[current].width){
     nestedObj['td_'+numtd] = objAllTD[current]
   }
 
