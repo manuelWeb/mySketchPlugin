@@ -34,23 +34,23 @@ const objAllTD ={
       height: 43, width: 421,
       x: 0, y: 416,
   },
-  "index_7.5":     {
-      name: "s3c1s4",
-      height: 43, width: 421,
-      x: 0, y: 416,
-  },
   "index_8":     {
       name: "s3c2",
-      height: 122, width: 199,
+      height: 122, width: 109,
       x: 421, y: 337,
-    }
+  },
+  "index_9":     {
+      name: "s3c3",
+      height: 122, width: 90,
+      x: 530, y: 337,
+  }
     ,
-    "index_9":     {
+    "index_10":     {
         height: 122,
         name: "s4",
         width: 620,
-        x: 421,
-        y: 337,
+        x: 0,
+        y: 459,
     }
   }
 let sliceComplet = {}
@@ -82,14 +82,13 @@ for(let i = 0; i < keys.length; i++) {
       nestedObj['td_'+numtd] = objAllTD[current]
       nestedObj['td_'+ parseInt(numtd+1)] = objAllTD[next]
       // nestedObj['td_'+ parseInt(numtd+1)].name === objAllTD[current].name ? console.log('vrai') : console.log('faux...remplir sous obj')
-      console.log(objAllTD[current].name,nestedObj['td_'+ parseInt(numtd+1)].name);
+      // console.log(objAllTD[current].name,nestedObj['td_'+ parseInt(numtd+1)].name);
+      console.log('slice_'+num);
     }
-    console.log(nestedObj)
   }
   // si nestedObj have td with y that === objAllTD[current].y
   // nestedObj.td_1 ? console.log(`nestedObj.td_1: ${nestedObj.td_1.name}.y: ${nestedObj.td_1.y} `) : console.log('pas de nested_td1')
-  nestedObj.td_1 ? nestedObj.td_1.y === objAllTD[current].y ? console.log(`${nestedObj.td_1.name}: ${nestedObj.td_1.y} === ${objAllTD[current].name} ${objAllTD[current].y} ` ) : console.log('echec') : console.log('pas de nested_td1')
-
+  nestedObj.td_1 ? nestedObj.td_1.y === objAllTD[current].y && nestedObj.td_1.name !== objAllTD[current].name ? console.log(`${nestedObj.td_1.name}: ${nestedObj.td_1.y} === ${objAllTD[current].name} ${objAllTD[current].y} ` ) : console.log('echec') : console.log('pas de nested_td1')
 
   if( objAllTD[current].width < 620 && accWidth < 620 ){
     accWidth += objAllTD[current].width
@@ -112,7 +111,7 @@ for(let i = 0; i < keys.length; i++) {
 
 }
 
-
+console.log(nestedObj)
 console.log(objSlice)
 
 
