@@ -88,9 +88,10 @@ for(let i = 0; i < keys.length; i++) {
     }
 
   }
-  // else if(objAllTD[current].width){
-  //   nestedObj['td_'+numtd] = objAllTD[current]
-  // }
+  // si nestedObj have td with y that === objAllTD[current].y
+  // nestedObj.td_1 ? console.log(`nestedObj.td_1: ${nestedObj.td_1.name}.y: ${nestedObj.td_1.y} `) : console.log('pas de nested_td1')
+  nestedObj.td_1 ? nestedObj.td_1.y === objAllTD[current].y ? console.log(`${nestedObj.td_1.name}: ${nestedObj.td_1.y} === ${objAllTD[current].name} ${objAllTD[current].y} ` ) : console.log('echec') : console.log('pas de nested_td1')
+
 
   if( objAllTD[current].width < 620 && accWidth < 620 ){
     accWidth += objAllTD[current].width
@@ -112,6 +113,8 @@ for(let i = 0; i < keys.length; i++) {
   }
 
 }
+
+
 console.log(objSlice)
 console.log(nestedObj)
 
