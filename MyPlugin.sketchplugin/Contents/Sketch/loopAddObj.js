@@ -82,11 +82,9 @@ for(let i = 0; i < keys.length; i++) {
       nestedObj['td_'+numtd] = objAllTD[current]
       nestedObj['td_'+ parseInt(numtd+1)] = objAllTD[next]
       // nestedObj['td_'+ parseInt(numtd+1)].name === objAllTD[current].name ? console.log('vrai') : console.log('faux...remplir sous obj')
-      console.log(objAllTD[current].name,nestedObj['td_'+ parseInt(numtd+1)].name); 
-      // console.log(`objAllTD[current]:${objAllTD[current].name} newOjb`);
-      // console.log(`objAllTD[next]:${objAllTD[next].name} newOjb-nxt`);
+      console.log(objAllTD[current].name,nestedObj['td_'+ parseInt(numtd+1)].name);
     }
-
+    console.log(nestedObj)
   }
   // si nestedObj have td with y that === objAllTD[current].y
   // nestedObj.td_1 ? console.log(`nestedObj.td_1: ${nestedObj.td_1.name}.y: ${nestedObj.td_1.y} `) : console.log('pas de nested_td1')
@@ -116,7 +114,7 @@ for(let i = 0; i < keys.length; i++) {
 
 
 console.log(objSlice)
-console.log(nestedObj)
+
 
 // if(objAllTD.hasOwnProperty(next) && objAllTD[current].x === objAllTD[next].x){
 //   console.log(`objAllTD[current]:${objAllTD[current].name} newOjb ifX2`);
