@@ -77,7 +77,8 @@ for(let i = 0; i < keys.length; i++) {
   if( objAllTD.hasOwnProperty(next) ){
 
     if(objAllTD[current].x === objAllTD[next].x
-      && objAllTD[current].width === objAllTD[next].width){
+      && objAllTD[current].width === objAllTD[next].width)
+    {
       // nestedObj.hasOwnProperty(objAllTD[current].name) ? console.log('pas de ...') : nestedObj['td_'+numtd] = objAllTD[current]
       nestedObj['td_'+numtd] = objAllTD[current]
       nestedObj['td_'+ parseInt(numtd+1)] = objAllTD[next]
@@ -85,10 +86,11 @@ for(let i = 0; i < keys.length; i++) {
       // console.log(objAllTD[current].name,nestedObj['td_'+ parseInt(numtd+1)].name);
       console.log('slice_'+num);
     }
+    // si nestedObj have td with y that === objAllTD[current].y
+    // && nestedObj.td_1.name !== objAllTD[current].name -> supp redondance sur première td de nested table
+    // nestedObj.td_1 ? nestedObj.td_1.y === objAllTD[current].y && nestedObj.td_1.name !== objAllTD[current].name ? console.log(`${nestedObj.td_1.name}: ${nestedObj.td_1.y} === ${objAllTD[current].name} ${objAllTD[current].y} ` ) : console.log('echec') : console.log('pas de nested_td1')
+    nestedObj.td_1 ? nestedObj.td_1.y === objAllTD[current].y && nestedObj.td_1.name !== objAllTD[current].name ? console.log(`${nestedObj.td_1.name}: ${nestedObj.td_1.y} === ${objAllTD[current].name} ${objAllTD[current].y} ` ) : console.log(`1er test TRUE: ${nestedObj.td_1.name} `) : console.log(`1er test FALSE: ${nestedObj.td_1} `)
   }
-  // si nestedObj have td with y that === objAllTD[current].y
-  // nestedObj.td_1 ? console.log(`nestedObj.td_1: ${nestedObj.td_1.name}.y: ${nestedObj.td_1.y} `) : console.log('pas de nested_td1')
-  nestedObj.td_1 ? nestedObj.td_1.y === objAllTD[current].y && nestedObj.td_1.name !== objAllTD[current].name ? console.log(`${nestedObj.td_1.name}: ${nestedObj.td_1.y} === ${objAllTD[current].name} ${objAllTD[current].y} ` ) : console.log('echec') : console.log('pas de nested_td1')
 
   if( objAllTD[current].width < 620 && accWidth < 620 ){
     accWidth += objAllTD[current].width
