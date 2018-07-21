@@ -82,15 +82,11 @@ for(let i = 0; i < keys.length; i++) {
         console.log('slice_'+num);
         // objSlice[ 'slice_' + num ] = {['td_'+numtd]: objAllTD[current].name}
       }
+      console.log(nestedObj.hasOwnProperty('td_'+parseInt(numtd)) );
       nestedObj['td_'+numtd] = objAllTD[current]
       nestedObj['td_'+ parseInt(numtd+1)] = objAllTD[next]
-      console.log(`nestedObj['td_'+numtd]: ${nestedObj['td_'+numtd].name} -> objAllTD[current].name: ${objAllTD[current].name} `,`nestedObj['td_'+numtd+1]: ${nestedObj['td_'+parseInt(numtd+1)].name} -> objAllTD[next].name: ${objAllTD[next].name} `);
-      // nestedObj['td_'+numtd].hasOwnProperty(objAllTD[current].name) ? console.log('vrai') : console.log('faux');
 
-      // console.log(nestedObj['td_'+parseInt(numtd+1)]);
-      // console.log( nestedObj['td_'+ parseInt(numtd)].hasOwnProperty(objAllTD[current].name) );
-      // console.log( nestedObj.hasOwnProperty('td_'+numtd) , numtd );
-      // console.log( nestedObj.hasOwnProperty('td_'+parseInt(numtd+1)) , numtd+1 );
+      console.log(`nestedObj['td_'+numtd]: ${nestedObj['td_'+numtd].name} -> objAllTD[current].name: ${objAllTD[current].name} `,`nestedObj['td_'+numtd+1]: ${nestedObj['td_'+parseInt(numtd+1)].name} -> objAllTD[next].name: ${objAllTD[next].name} `);
 
     }
     // si nestedObj have td with y that === objAllTD[current].y
