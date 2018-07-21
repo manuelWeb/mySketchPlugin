@@ -78,17 +78,25 @@ for(let i = 0; i < keys.length; i++) {
 
     if(objAllTD[current].x === objAllTD[next].x
       && objAllTD[current].width === objAllTD[next].width){
-      // nestedObj.hasOwnProperty(objAllTD[current].name) ? console.log('pas de ...') : nestedObj['td_'+numtd] = objAllTD[current]
+      if(!objSlice[ 'slice_' + num ]){
+        console.log('slice_'+num);
+        // objSlice[ 'slice_' + num ] = {['td_'+numtd]: objAllTD[current].name}
+      }
       nestedObj['td_'+numtd] = objAllTD[current]
       nestedObj['td_'+ parseInt(numtd+1)] = objAllTD[next]
-      // nestedObj['td_'+ parseInt(numtd+1)].name === objAllTD[current].name ? console.log('vrai') : console.log('faux...remplir sous obj')
-      // console.log(objAllTD[current].name,nestedObj['td_'+ parseInt(numtd+1)].name);
-      console.log('slice_'+num);
+      console.log(`nestedObj['td_'+numtd]: ${nestedObj['td_'+numtd].name} -> objAllTD[current].name: ${objAllTD[current].name} `,`nestedObj['td_'+numtd+1]: ${nestedObj['td_'+parseInt(numtd+1)].name} -> objAllTD[next].name: ${objAllTD[next].name} `);
+      // nestedObj['td_'+numtd].hasOwnProperty(objAllTD[current].name) ? console.log('vrai') : console.log('faux');
+
+      // console.log(nestedObj['td_'+parseInt(numtd+1)]);
+      // console.log( nestedObj['td_'+ parseInt(numtd)].hasOwnProperty(objAllTD[current].name) );
+      // console.log( nestedObj.hasOwnProperty('td_'+numtd) , numtd );
+      // console.log( nestedObj.hasOwnProperty('td_'+parseInt(numtd+1)) , numtd+1 );
+
     }
+    // si nestedObj have td with y that === objAllTD[current].y
+    // recup des TD qui suive nested table
+    nestedObj.td_1 ? nestedObj.td_1.y === objAllTD[current].y && nestedObj.td_1.name !== objAllTD[current].name ? console.log(`${nestedObj.td_1.name}: ${nestedObj.td_1.y} === ${objAllTD[current].name} ${objAllTD[current].y} ` ) : console.log('nestedObj.td_1.y !== objAllTD[current].y') : console.log('!nestedObj.td_1')
   }
-  // si nestedObj have td with y that === objAllTD[current].y
-  // nestedObj.td_1 ? console.log(`nestedObj.td_1: ${nestedObj.td_1.name}.y: ${nestedObj.td_1.y} `) : console.log('pas de nested_td1')
-  nestedObj.td_1 ? nestedObj.td_1.y === objAllTD[current].y && nestedObj.td_1.name !== objAllTD[current].name ? console.log(`${nestedObj.td_1.name}: ${nestedObj.td_1.y} === ${objAllTD[current].name} ${objAllTD[current].y} ` ) : console.log('echec') : console.log('pas de nested_td1')
 
   if( objAllTD[current].width < 620 && accWidth < 620 ){
     accWidth += objAllTD[current].width
