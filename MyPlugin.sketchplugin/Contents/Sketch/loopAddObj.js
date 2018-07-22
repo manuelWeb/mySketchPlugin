@@ -84,8 +84,12 @@ for(let i = 0; i < keys.length; i++) {
       }
       nestedObj['td_'+parseInt(numtd)] = objAllTD[current]
       nestedObj['td_'+parseInt(numtd+1)] = objAllTD[next]
-      // le BUG se trouve ici -> // numtd++
 
+      console.log('nestedObj : ',nestedObj);
+      console.log('ce qui manque : '+nestedObj['td_'+parseInt(numtd+1)].name);
+
+      // le BUG se trouve ici ->
+      numtd++
     }
     // si nestedObj have td with y that === objAllTD[current].y
     // recup des TD qui suive nested table
