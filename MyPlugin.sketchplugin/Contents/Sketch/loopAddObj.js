@@ -75,7 +75,6 @@ for(let i = 0; i < keys.length; i++) {
   }
 
   if( objAllTD.hasOwnProperty(next) ){
-
     if(objAllTD[current].x === objAllTD[next].x
       && objAllTD[current].width === objAllTD[next].width){
       if(!objSlice[ 'slice_' + num ]){
@@ -86,17 +85,23 @@ for(let i = 0; i < keys.length; i++) {
       nestedObj['td_'+parseInt(numtd+1)] = objAllTD[next]
 
       console.log('nestedObj : ',nestedObj);
-      console.log('ce qui manque : '+nestedObj['td_'+parseInt(numtd+1)].name);
+      console.log('doit on ajouter : '+nestedObj['td_'+parseInt(numtd+1)].name);
 
       // if (Object.values(nestedObj).indexOf(nestedObj['td_'+parseInt(numtd+1)].name) > -1) {
       //   console.log('has:',nestedObj['td_'+parseInt(numtd+1)].name);
       // }
-      console.log(
-        Object.values(nestedObj['td_'+parseInt(numtd)]).includes(objAllTD[current].name)
-      );
+      // console.log( `nestedObj values:`, Object.values(nestedObj),
+      //   Object.values(nestedObj['td_'+parseInt(numtd+1)]).includes(objAllTD[next].name)
+      // );
 
       // le BUG se trouve ici ->
       numtd++
+    }
+    if(objAllTD[next].name){
+      console.log(`objAllTD[next].name:.......`+objAllTD[next].name);
+      if(nestedObj){
+        console.log(`nestedObj['td_'+parseInt(numtd)]:+++++`,nestedObj['td_'+parseInt(numtd)]);
+      }
     }
     // si nestedObj have td with y that === objAllTD[current].y
     // recup des TD qui suive nested table
