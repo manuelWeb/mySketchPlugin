@@ -82,10 +82,9 @@ for(let i = 0; i < keys.length; i++) {
         console.log('slice_'+num);
         // objSlice[ 'slice_' + num ] = {['td_'+numtd]: objAllTD[current].name}
       }
-      console.log(!nestedObj.hasOwnProperty('td_'+parseInt(numtd)) );
+      console.log(nestedObj.hasOwnProperty('td_'+parseInt(numtd))+'-> nestedObj:', nestedObj );
       nestedObj['td_'+parseInt(numtd)] = objAllTD[current]
       nestedObj['td_'+parseInt(numtd+1)] = objAllTD[next]
-      console.log('object');
 
       // if(!nestedObj.hasOwnProperty('td_'+parseInt(numtd)) ){
       // }else{
@@ -96,7 +95,9 @@ for(let i = 0; i < keys.length; i++) {
     }
     // si nestedObj have td with y that === objAllTD[current].y
     // recup des TD qui suive nested table
-    nestedObj.td_1 ? nestedObj.td_1.y === objAllTD[current].y && nestedObj.td_1.name !== objAllTD[current].name ? console.log(`${nestedObj.td_1.name}: ${nestedObj.td_1.y} === ${objAllTD[current].name} ${objAllTD[current].y} ` ) : console.log('nestedObj.td_1.y !== objAllTD[current].y') : console.log('!nestedObj.td_1')
+    // nestedObj.td_1 ? nestedObj.td_1.y === objAllTD[current].y && nestedObj.td_1.name !== objAllTD[current].name ? console.log(`${nestedObj.td_1.name}: ${nestedObj.td_1.y} === ${objAllTD[current].name} ${objAllTD[current].y} ` ) : console.log('nestedObj.td_1.y !== objAllTD[current].y') : console.log('!nestedObj.td_1')
+    nestedObj.td_1 ? nestedObj.td_1.y === objAllTD[current].y && nestedObj.td_1.name !== objAllTD[current].name ?  nestedObj['td_'+parseInt(numtd)] = objAllTD[current] : console.log('nestedObj.td_1.y !== objAllTD[current].y') : console.log('!nestedObj.td_1');
+    numtd++
   }
 
   if( objAllTD[current].width < 620 && accWidth < 620 ){
@@ -123,24 +124,3 @@ for(let i = 0; i < keys.length; i++) {
 console.log(nestedObj)
 console.log(objSlice)
 
-
-// if(objAllTD.hasOwnProperty(next) && objAllTD[current].x === objAllTD[next].x){
-//   console.log(`objAllTD[current]:${objAllTD[current].name} newOjb ifX2`);
-// }
-
-// else{
-//   console.log(`objAllTD[current]:${objAllTD[current].name} newOjb_else`);
-// }
-
-// if(objAllTD.hasOwnProperty(next)
-//    && objAllTD[current].x === objAllTD[next].x
-//    && objAllTD[current].width === objAllTD[next].width){
-//   console.log(
-//     `
-//     objAllTD[current]:${objAllTD[current].name} x:${objAllTD[current].x}, w:${objAllTD[current].width}
-//     objAllTD[next]:${objAllTD[next].name} x:${objAllTD[next].x}, w:${objAllTD[next].width}
-//     objAllTD[current]:${objAllTD[current].name} y:${objAllTD[current].y}, w:${objAllTD[current].width},
-//     objAllTD[next]:${objAllTD[next].name} y:${objAllTD[next].y}, w:${objAllTD[next].width}
-//     `
-//   );
-// }
