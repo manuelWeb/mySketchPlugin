@@ -88,6 +88,13 @@ for(let i = 0; i < keys.length; i++) {
       console.log('nestedObj : ',nestedObj);
       console.log('ce qui manque : '+nestedObj['td_'+parseInt(numtd+1)].name);
 
+      // if (Object.values(nestedObj).indexOf(nestedObj['td_'+parseInt(numtd+1)].name) > -1) {
+      //   console.log('has:',nestedObj['td_'+parseInt(numtd+1)].name);
+      // }
+      console.log(
+        Object.values(nestedObj['td_'+parseInt(numtd)]).includes(objAllTD[current].name)
+      );
+
       // le BUG se trouve ici ->
       numtd++
     }
