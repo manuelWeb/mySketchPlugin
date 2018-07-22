@@ -82,22 +82,19 @@ for(let i = 0; i < keys.length; i++) {
         console.log('slice_'+num);
         // objSlice[ 'slice_' + num ] = {['td_'+numtd]: objAllTD[current].name}
       }
-      console.log(nestedObj.hasOwnProperty('td_'+parseInt(numtd))+'-> nestedObj:', nestedObj );
       nestedObj['td_'+parseInt(numtd)] = objAllTD[current]
       nestedObj['td_'+parseInt(numtd+1)] = objAllTD[next]
-
-      // if(!nestedObj.hasOwnProperty('td_'+parseInt(numtd)) ){
-      // }else{
-      // }
-
-      // console.log(`nestedObj['td_'+numtd]: ${nestedObj['td_'+numtd].name} -> objAllTD[current].name: ${objAllTD[current].name} `,`nestedObj['td_'+numtd+1]: ${nestedObj['td_'+parseInt(numtd+1)].name} -> objAllTD[next].name: ${objAllTD[next].name} `);
+      // le BUG se trouve ici -> // numtd++
 
     }
     // si nestedObj have td with y that === objAllTD[current].y
     // recup des TD qui suive nested table
-    // nestedObj.td_1 ? nestedObj.td_1.y === objAllTD[current].y && nestedObj.td_1.name !== objAllTD[current].name ? console.log(`${nestedObj.td_1.name}: ${nestedObj.td_1.y} === ${objAllTD[current].name} ${objAllTD[current].y} ` ) : console.log('nestedObj.td_1.y !== objAllTD[current].y') : console.log('!nestedObj.td_1')
-    nestedObj.td_1 ? nestedObj.td_1.y === objAllTD[current].y && nestedObj.td_1.name !== objAllTD[current].name ?  nestedObj['td_'+parseInt(numtd)] = objAllTD[current] : console.log('nestedObj.td_1.y !== objAllTD[current].y') : console.log('!nestedObj.td_1');
-    numtd++
+    nestedObj.td_1 ? nestedObj.td_1.y === objAllTD[current].y && nestedObj.td_1.name !== objAllTD[current].name ?  addNest() : console.log('nestedObj.td_1.y !== objAllTD[current].y') : console.log('!nestedObj.td_1');
+
+    function addNest() {
+      nestedObj['td_'+parseInt(numtd)] = objAllTD[current]
+      numtd++;
+    }
   }
 
   if( objAllTD[current].width < 620 && accWidth < 620 ){
