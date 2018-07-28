@@ -53,7 +53,7 @@ const objAllTD ={
         y: 459,
     }
   }
-let sliceComplet = {}
+
 let accWidth     = 0
 let keys         = Object.keys(objAllTD);
 let numtd        = 1
@@ -82,7 +82,6 @@ for(let i = 0; i < keys.length; i++) {
 
       if(!objSlice[ 'slice_' + num ]){
         console.log('slice_'+num);
-        // objSlice[ 'slice_' + num ] = {['td_'+numtd]: objAllTD[current].name}
       }
 
       nestedObj['td_'+parseInt(numtd)] = objAllTD[current]
@@ -90,13 +89,6 @@ for(let i = 0; i < keys.length; i++) {
 
       console.log('nestedObj : ',nestedObj);
       console.log('doit on ajouter : '+nestedObj['td_'+parseInt(numtd+1)].name);
-
-      // if (Object.values(nestedObj).indexOf(nestedObj['td_'+parseInt(numtd+1)].name) > -1) {
-      //   console.log('has:',nestedObj['td_'+parseInt(numtd+1)].name);
-      // }
-      // console.log( `nestedObj values:`, Object.values(nestedObj),
-      //   Object.values(nestedObj['td_'+parseInt(numtd+1)]).includes(objAllTD[next].name)
-      // );
 
       // le BUG se trouve ici ->
       numtd++
@@ -117,9 +109,7 @@ for(let i = 0; i < keys.length; i++) {
       nestedObj['td_'+parseInt(numtd)] = objAllTD[current]
       numtd++;
     }
-    // LOG : si nestedObj have td with y that === objAllTD[current].y
-    // && nestedObj.td_1.name !== objAllTD[current].name -> supp redondance sur première td de nested table
-    // nestedObj.td_1 ? nestedObj.td_1.y === objAllTD[current].y && nestedObj.td_1.name !== objAllTD[current].name ? console.log(`${nestedObj.td_1.name} y_${nestedObj.td_1.y} === ${objAllTD[current].name} y_${objAllTD[current].y} ` ) : console.log(`1er test TRUE: ${nestedObj.td_1.name} `) : console.log(`1er test FALSE: ${nestedObj.td_1} `)
+
   }
 
   if( objAllTD[current].width < 620 && accWidth < 620 ){
