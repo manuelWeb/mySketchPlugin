@@ -1,58 +1,58 @@
-const objAllTD ={
-  "index_1":     {
-      name: "s1",
-      height: 180, width: 620,
-      x: 0, y: 0,
+const objAllTD = {
+  "index_1": {
+    name: "s1",
+    height: 180, width: 620,
+    x: 0, y: 0,
   },
-  "index_2":     {
-      name: "s2c1",
-      height: 157, width: 299,
-      x: 0, y: 180,
+  "index_2": {
+    name: "s2c1",
+    height: 157, width: 299,
+    x: 0, y: 180,
   },
-  "index_3":     {
-      name: "s2c2",
-      height: 157, width: 165,
-      x: 299, y: 180,
+  "index_3": {
+    name: "s2c2",
+    height: 157, width: 165,
+    x: 299, y: 180,
   },
-  "index_4":     {
-      name: "s2c3",
-      height: 157, width: 156,
-      x: 464, y: 180,
+  "index_4": {
+    name: "s2c3",
+    height: 157, width: 156,
+    x: 464, y: 180,
   },
-  "index_5":     {
-      name: "s3c1s1",
-      height: 30, width: 421,
-      x: 0, y: 337,
+  "index_5": {
+    name: "s3c1s1",
+    height: 30, width: 421,
+    x: 0, y: 337,
   },
-  "index_6":     {
-      name: "s3c1s2",
-      height: 49, width: 421,
-      x: 0, y: 367,
+  "index_6": {
+    name: "s3c1s2",
+    height: 49, width: 421,
+    x: 0, y: 367,
   },
-  "index_7":     {
-      name: "s3c1s3",
-      height: 43, width: 421,
-      x: 0, y: 416,
+  "index_7": {
+    name: "s3c1s3",
+    height: 43, width: 421,
+    x: 0, y: 416,
   },
-  "index_8":     {
-      name: "s3c2",
-      height: 122, width: 109,
-      x: 421, y: 337,
+  "index_8": {
+    name: "s3c2",
+    height: 122, width: 109,
+    x: 421, y: 337,
   },
-  "index_9":     {
-      name: "s3c3",
-      height: 122, width: 90,
-      x: 530, y: 337,
+  "index_9": {
+    name: "s3c3",
+    height: 122, width: 90,
+    x: 530, y: 337,
   }
-    ,
-    "index_10":     {
-        height: 122,
-        name: "s4",
-        width: 620,
-        x: 0,
-        y: 459,
-    }
+  ,
+  "index_10": {
+    height: 122,
+    name: "s4",
+    width: 620,
+    x: 0,
+    y: 459,
   }
+}
 
 // let accWidth     = 0
 // let keys         = Object.keys(objAllTD);
