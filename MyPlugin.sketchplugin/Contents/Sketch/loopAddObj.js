@@ -53,12 +53,19 @@ const objAllTD = [
     y: 459,
   }
 ]
-const tdw = objAllTD.map( td => td.width  )
-console.log(tdw);
-const a = {}
-// a[620]+=1,a // { '620': NaN }
-a[620] = ( a[620] || 0 ) + 1,a
-console.log(a);
+
+let accW = 0
+let smtd = []
+
+const arw = objAllTD.map( td => {return{'n': td.name, 'w': td.width, 'x': td.x, 'y': td.y}} )
+// const arw = objAllTD.map( td => td.width )
+// console.log(arw);
+const sliceOneTd = arw.filter( item => item.w === 620 && item.x === 0 )
+const sliceMultiTd = arw.filter( item => item.w < 620 )
+// sliceMultiTd.reduce( (acc,val) )
+console.log(sliceOneTd);
+console.log(sliceMultiTd);
+console.log(sliceMultiTd.reduce( (acc,val) => console.log(acc) ));
 
 // console.log(undefined || 0) // -> O
 
